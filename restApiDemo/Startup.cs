@@ -27,6 +27,7 @@ namespace restApiDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IPerson, PersonService>();
+            services.AddScoped<IAnimal, AnimalService>();
             services.AddControllers();
         }
 
