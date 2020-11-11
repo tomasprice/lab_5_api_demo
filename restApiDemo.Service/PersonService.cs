@@ -33,6 +33,12 @@ namespace restApiDemo.Service
         public void Update(Person person, int id)
         {
             var personIndex = People.FindIndex(person => person.Id == id);
+
+            if (personIndex < 0)
+            {
+                return;
+            }
+
             var currentPerson = People.Where(person => person.Id == id).FirstOrDefault();
             person.Id = currentPerson.Id;
 
@@ -42,6 +48,12 @@ namespace restApiDemo.Service
         public void Delete(int id)
         {
             var personIndex = People.FindIndex(person => person.Id == id);
+
+            if (personIndex < 0)
+            {
+                return;
+            }
+
             People.RemoveAt(personIndex);
         }
     }
