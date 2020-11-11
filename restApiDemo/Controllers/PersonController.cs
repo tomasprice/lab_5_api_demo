@@ -15,7 +15,6 @@ namespace restApiDemo.Controllers
         private readonly IPerson _personService;
         //2019-01-06T17:16:40
 
-
         public PersonController(IPerson personService)
         {
             _personService = personService;
@@ -35,13 +34,13 @@ namespace restApiDemo.Controllers
             return _personService.GetAll();
         }
 
-        [HttpGet]
-        public Person GetById(int id)
+        [HttpGet("{id}")]
+        public Person Get(int id)
         {
             return _personService.GetById(id);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public void Update(Person model, int id)
         {
             var check = _personService.GetAll().Count();
@@ -56,7 +55,7 @@ namespace restApiDemo.Controllers
             _personService.Update(person, id);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
             _personService.Delete(id);
