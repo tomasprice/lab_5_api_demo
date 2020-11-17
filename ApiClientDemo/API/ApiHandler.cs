@@ -11,12 +11,16 @@ namespace ApiClientDemo.API
 
         public ApiHandler(string address)
         {
-            this._client = new RestClient(address);
+            _client = new RestClient(address);
         }
 
         public List<T> Get<T>()
         {
-            var request = new RestRequest("get", Method.GET);
+            var request = new RestRequest("get", Method.GET)
+            {
+                RequestFormat = DataFormat.Json
+            };
+            var x = _client.Execute<List<T>>(request);
             var result = _client.Execute<List<T>>(request).Data;
 
             return result;
