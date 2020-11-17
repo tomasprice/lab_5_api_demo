@@ -16,7 +16,6 @@
         </Style>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="25" />
-            <Setter Property="FontFamily" Value="Times New Roman Bold" />
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="Margin" Value="10, 10, 10, 10" />
             <Setter Property="BorderThickness" Value="3" />

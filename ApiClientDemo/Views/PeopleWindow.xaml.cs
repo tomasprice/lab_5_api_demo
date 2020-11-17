@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace ApiClientDemo.Views
 {
-    /// <summary>
-    /// Interaction logic for PeopleWindow.xaml
-    /// </summary>
     public partial class PeopleWindow : Window
     {
         private ApiHandler apiHandler;
@@ -104,7 +101,7 @@ namespace ApiClientDemo.Views
            {
                 Name = PersonName.Text,
                 Surname = PersonSurname.Text,
-                BirthYear = Convert.ToDateTime(PersonBirthYear.Text),
+                BirthYear = PersonBirthYear.SelectedDate.GetValueOrDefault(),
                 Town = PersonTown.Text
             };
         }
@@ -114,7 +111,7 @@ namespace ApiClientDemo.Views
         {
             PersonName.Text = person.Name;
             PersonSurname.Text = person.Surname;
-            PersonBirthYear.Text = person.BirthYear.ToLongDateString();
+            PersonBirthYear.SelectedDate = person.BirthYear;
             PersonTown.Text = person.Town;
 
             currentPersonId = person.Id;
@@ -128,7 +125,7 @@ namespace ApiClientDemo.Views
 
         private void GetData()
         {
-            List<Person> people = apiHandler.Get<Person>();
+            var people = apiHandler.Get<Person>();
 
             if (people == null || people.Count <= 0)
             {

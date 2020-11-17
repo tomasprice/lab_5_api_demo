@@ -7,22 +7,6 @@
         mc:Ignorable="d"
         Title="People" Height="460" Width="800" ResizeMode="NoResize">
 
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Calibri Light" />
-            <Setter Property="FontSize" Value="20" />
-        </Style>
-        <Style TargetType="GridViewColumnHeader">
-            <Setter Property="FontSize" Value="15" />
-        </Style>
-        <Style TargetType="Label">
-            <Setter Property="FontSize" Value="19" />
-        </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="FontSize" Value="19" />
-        </Style>
-    </Window.Resources>
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -119,9 +103,12 @@
                         <Label 
                             Content="BirthYear"
                              Width="100"/>
-                        <TextBox 
+                        <!--<TextBox 
                             Name="PersonBirthYear"
-                            Width="433" />
+                            Width="433" />-->
+                        <DatePicker
+                            Name="PersonBirthYear"
+                            Width="433"/>
                     </StackPanel>
                 </Border>
 

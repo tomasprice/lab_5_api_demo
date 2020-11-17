@@ -28,6 +28,7 @@ namespace ApiClientDemo.API
             {
                 RequestFormat = DataFormat.Json
             };
+
             request.AddJsonBody(item);
 
             var response = _client.Execute(request);
@@ -58,7 +59,7 @@ namespace ApiClientDemo.API
         }
 
 
-        public T GetPerson<T>(int id)
+        public T GetById<T>(int id)
         {
             var request = new RestRequest($"get/{id}", Method.GET);
             var result = _client.Execute<T>(request).Data;
