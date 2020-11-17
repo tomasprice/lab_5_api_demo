@@ -11,7 +11,7 @@ namespace restApiDemo.Data.Models
         public string Species { get; set; }
         public int Weight { get; set; }
         public bool Carnivorous { get; set; }
-        public DateTime[] CaptureDates { get; set; }
-        public string[] PlacesOfOccurrence { get; set; }
+        public List<DateTime> CaptureDates { get; set; }
+        public List<string> PlacesOfOccurrence { get; set; }
     }
 }
