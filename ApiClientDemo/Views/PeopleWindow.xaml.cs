@@ -16,7 +16,7 @@ namespace ApiClientDemo.Views
 {
     public partial class PeopleWindow : Window
     {
-        private ApiHandler apiHandler;
+        private ApiHandler _apiHandler;
         private int currentPersonId = -1;
 
         public PeopleWindow()
@@ -35,7 +35,7 @@ namespace ApiClientDemo.Views
         {
             var person = GetPerson();
 
-            if (!apiHandler.Add(person))
+            if (!_apiHandler.Add(person))
             {
                 return;
             }
@@ -54,7 +54,7 @@ namespace ApiClientDemo.Views
 
             var person = GetPerson();
 
-            if (!apiHandler.Update(person, currentPersonId))
+            if (!_apiHandler.Update(person, currentPersonId))
             {
                 return;
             }
@@ -73,7 +73,7 @@ namespace ApiClientDemo.Views
                 return;
             }
 
-            if (!apiHandler.Delete(currentPersonId))
+            if (!_apiHandler.Delete(currentPersonId))
             {
                 return;
             }
@@ -120,12 +120,12 @@ namespace ApiClientDemo.Views
         private void CreateApiHandler()
         {
             var baseAddress = "http://localhost:55064/person/";
-            apiHandler = new ApiHandler(baseAddress);
+            _apiHandler = new ApiHandler(baseAddress);
         }
 
         private void GetData()
         {
-            var people = apiHandler.Get<Person>();
+            var people = _apiHandler.Get<Person>();
 
             if (people == null || people.Count <= 0)
             {
