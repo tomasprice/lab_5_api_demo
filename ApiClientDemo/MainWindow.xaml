@@ -1,0 +1,59 @@
+﻿<Window x:Class="ApiClientDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApiClientDemo"
+        mc:Ignorable="d"
+        Title="Api client demo" Height="450" Width="800" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontFamily" Value="Times New Roman Bold" />
+            <Setter Property="Grid.ColumnSpan" Value="2" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0, 50, 0, 0" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="FontFamily" Value="Times New Roman Bold" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="Margin" Value="10, 10, 10, 10" />
+            <Setter Property="BorderThickness" Value="3" />
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock>
+            Choose on which objects you want to work...
+        </TextBlock>
+
+        <Button 
+            Grid.Row="1" 
+            Grid.Column="0"
+            Click="Animal_Button">
+            Animals
+        </Button>
+
+        <Button 
+            Grid.Row="1" 
+            Grid.Column="1"
+            Click="People_Button">
+            People
+        </Button>
+
+
+    </Grid>
+</Window>

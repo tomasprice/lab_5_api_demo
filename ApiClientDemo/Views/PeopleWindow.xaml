@@ -1,0 +1,174 @@
+﻿<Window x:Class="ApiClientDemo.Views.PeopleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApiClientDemo.Views"
+        mc:Ignorable="d"
+        Title="People" Height="460" Width="800" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Calibri Light" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="19" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="19" />
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView 
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="2"
+            Grid.Row="0"
+            Name="PeopleList"
+            MouseDoubleClick="PeopleList_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Header="Id"
+                        DisplayMemberBinding="{Binding Id}"
+                        Width="50" />
+                    <GridViewColumn
+                        Header="Name"
+                        DisplayMemberBinding="{Binding Name}"
+                        Width="150"/>
+                    <GridViewColumn
+                        Header="Surname"
+                        DisplayMemberBinding="{Binding Surname}"
+                        Width="150"/>    
+                    <GridViewColumn
+                        Header="Birth Year"
+                        DisplayMemberBinding="{Binding BirthYear}"
+                        Width="150"/>
+                    <GridViewColumn
+                        Header="Town"
+                        DisplayMemberBinding="{Binding Town}"
+                        Width="150"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid 
+            Grid.Row="3"
+            Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="4">
+
+                <Border BorderBrush="Black" BorderThickness="0 0 0 1">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <Label 
+                            Content="Name"
+                            Width="100"/>
+                        <TextBox 
+                            Name="PersonName"
+                            Width="433" />
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="Black" BorderThickness="0 0 0 1">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <Label 
+                            Content="Surname"
+                             Width="100"/>
+                        <TextBox 
+                            Name="PersonSurname"
+                            Width="433" />
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="Black" BorderThickness="0 0 0 1">
+                    <StackPanel
+                    Orientation="Horizontal">
+                        <Label 
+                            Content="BirthYear"
+                             Width="100"/>
+                        <TextBox 
+                            Name="PersonBirthYear"
+                            Width="433" />
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="Black" BorderThickness="0 0 0 1">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <Label 
+                            Content="Town"
+                            Width="100"/>
+                        <TextBox 
+                            Name="PersonTown"
+                            Width="433" />
+                    </StackPanel>
+                </Border>
+
+
+            </StackPanel>
+
+            <Button 
+                Grid.Row="0"
+                Grid.Column="3"
+                Click="RefreshButton">
+                Refresh List
+            </Button>
+
+            <Button 
+                Grid.Row="1"
+                Grid.Column="3"
+                Click="AddPerson">
+                Add Person
+            </Button>
+
+
+            <Button 
+                Grid.Row="2"
+                Grid.Column="3"
+                Click="UpdatePerson">
+                Update Person
+            </Button>
+
+            <Button 
+                Grid.Row="3"
+                Grid.Column="3"
+                Click="DeletePerson">
+                Delete Person
+            </Button>
+
+        </Grid>
+    </Grid>
+</Window>
