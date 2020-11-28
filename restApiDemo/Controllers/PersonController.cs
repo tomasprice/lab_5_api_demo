@@ -9,7 +9,7 @@ using restApiDemo.Data.Models;
 namespace restApiDemo.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("[controller]")]
     public class PersonController : ControllerBase  
     {
         private readonly IPerson _personService;

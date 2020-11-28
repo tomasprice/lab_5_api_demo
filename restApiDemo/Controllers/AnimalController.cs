@@ -6,7 +6,7 @@ using restApiDemo.Data.Models;
 namespace restApiDemo.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("[controller]")]
     public class AnimalController : ControllerBase
     {
         private readonly IAnimal _animalService;
