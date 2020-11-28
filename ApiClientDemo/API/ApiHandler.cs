@@ -14,24 +14,33 @@ namespace ApiClientDemo.API
             _client = new RestClient(address);
         }
 
-        public List<T> Get<T>()
+        public List<T> Get<T>(bool matchCase = false, bool letterCaseSensitivity = false,
+            string name = "", int birthYear = -1, string town = "")
         {
             var request = new RestRequest(Method.GET)
             {
-                RequestFormat = DataFormat.Json
-            };
+                RequestFormat = DataFormat.Json,
+            }
+            .AddParameter("name", name)
+            .AddParameter("birthYear", birthYear)
+            .AddParameter("town", town)
+            .AddParameter("matchCase", matchCase)
+            .AddParameter("letterCaseSensitivity", letterCaseSensitivity);
+
             var x = _client.Execute<List<T>>(request);
             var result = _client.Execute<List<T>>(request).Data;
 
             return result;
         }
 
-        public bool Add<T>(T item)
+        public bool Add<T>(T item,
+            bool townRestrict = false)
         {
             var request = new RestRequest(Method.POST)
             {
                 RequestFormat = DataFormat.Json
-            };
+            }
+            .AddParameter("townRestrict", townRestrict, ParameterType.QueryString);
 
             request.AddJsonBody(item);
 
