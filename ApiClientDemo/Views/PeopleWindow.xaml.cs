@@ -34,9 +34,18 @@ namespace ApiClientDemo.Views
         private void AddPerson(object sender, RoutedEventArgs e)
         {
             var person = GetPerson();
+            var personCountPrevious = _apiHandler.Get<Person>().Count;
 
-            if (!_apiHandler.Add(person))
+            if (!_apiHandler.Add(person, CheckTownRestrict.IsChecked == true))
             {
+                return;
+            }
+
+            var personCountCurrent = _apiHandler.Get<Person>().Count;
+            if (personCountPrevious == personCountCurrent)
+            {
+                MessageBox.Show("Town restriction is on. Person hasn't been added!", "App", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 return;
             }
 
@@ -84,6 +93,31 @@ namespace ApiClientDemo.Views
             currentPersonId = -1;
         }
 
+        private void FilterButton(object sender, RoutedEventArgs e)
+        {
+            this.PeopleList.Items.Clear();
+
+            var birthYear = 0;
+            int.TryParse(TextBirthFilter.Text, out birthYear);
+
+            var people = _apiHandler.Get<Person>(
+                CheckMatchCaseFilter.IsChecked == true,
+                CheckCaseSensFilter.IsChecked == true,
+                PersonName.Text,
+                birthYear,
+                PersonTown.Text);
+
+            if (people == null || people.Count <= 0)
+            {
+                return;
+            }
+
+            foreach (var person in people)
+            {
+                this.PeopleList.Items.Add(person);
+            }
+        }
+
         private void PeopleList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var selectedPerson = PeopleList.SelectedItem;
@@ -106,7 +140,6 @@ namespace ApiClientDemo.Views
             };
         }
 
-
         private void PopulateTextFields(Person person)
         {
             PersonName.Text = person.Name;
@@ -125,20 +158,20 @@ namespace ApiClientDemo.Views
 
         private void GetData()
         {
+            this.PeopleList.Items.Clear();
+
             var people = _apiHandler.Get<Person>();
 
             if (people == null || people.Count <= 0)
             {
                 return;
             }
-
-            this.PeopleList.Items.Clear();
-
+          
             foreach (var person in people)
             {
                 this.PeopleList.Items.Add(person);
             }
         }
-
+   
     }
 }
