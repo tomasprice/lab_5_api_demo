@@ -16,7 +16,7 @@ namespace ApiClientDemo.API
 
         public List<T> Get<T>()
         {
-            var request = new RestRequest("get", Method.GET)
+            var request = new RestRequest(Method.GET)
             {
                 RequestFormat = DataFormat.Json
             };
@@ -28,7 +28,7 @@ namespace ApiClientDemo.API
 
         public bool Add<T>(T item)
         {
-            var request = new RestRequest("add", Method.POST)
+            var request = new RestRequest(Method.POST)
             {
                 RequestFormat = DataFormat.Json
             };
@@ -42,7 +42,7 @@ namespace ApiClientDemo.API
 
         public bool Update<T>(T item, int id)
         {
-            var request = new RestRequest($"update/{id}", Method.PUT)
+            var request = new RestRequest($"/{id}", Method.PUT)
             {
                 RequestFormat = DataFormat.Json
             };
@@ -56,7 +56,7 @@ namespace ApiClientDemo.API
 
         public bool Delete(int id)
         {
-            var request = new RestRequest($"delete/{id}", Method.DELETE);
+            var request = new RestRequest($"/{id}", Method.DELETE);
             var result = _client.Execute(request);
 
             return result.IsSuccessful;
@@ -65,7 +65,7 @@ namespace ApiClientDemo.API
 
         public T GetById<T>(int id)
         {
-            var request = new RestRequest($"get/{id}", Method.GET);
+            var request = new RestRequest($"/{id}", Method.GET);
             var result = _client.Execute<T>(request).Data;
 
             return result;
