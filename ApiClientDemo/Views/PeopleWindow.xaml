@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ApiClientDemo.Views"
         mc:Ignorable="d"
-        Title="People" Height="460" Width="800" ResizeMode="NoResize">
+        Title="People" Height="465" Width="800" ResizeMode="NoResize">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,7 +25,7 @@
             Grid.RowSpan="2"
             Grid.Row="0"
             Name="PeopleList"
-            MouseDoubleClick="PeopleList_MouseDoubleClick">
+            MouseDoubleClick="PeopleList_MouseDoubleClick" Margin="0,0,0,48">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -39,7 +39,7 @@
                     <GridViewColumn
                         Header="Surname"
                         DisplayMemberBinding="{Binding Surname}"
-                        Width="150"/>    
+                        Width="150"/>
                     <GridViewColumn
                         Header="Birth Year"
                         DisplayMemberBinding="{Binding BirthYear}"
@@ -53,8 +53,10 @@
         </ListView>
 
         <Grid 
-            Grid.Row="3"
-            Grid.ColumnSpan="3">
+            Grid.Row="1"
+            Grid.ColumnSpan="3" 
+            Margin="0,101,0,0" 
+            Grid.RowSpan="2" Height="182" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -103,9 +105,6 @@
                         <Label 
                             Content="BirthYear"
                              Width="100"/>
-                        <!--<TextBox 
-                            Name="PersonBirthYear"
-                            Width="433" />-->
                         <DatePicker
                             Name="PersonBirthYear"
                             Width="433"/>
@@ -120,18 +119,39 @@
                             Width="100"/>
                         <TextBox 
                             Name="PersonTown"
-                            Width="433" />
+                            Width="290px" />
+                        <CheckBox
+                            x:Name="CheckTownRestrict"
+                            Content="Town Restrict" />
                     </StackPanel>
                 </Border>
 
+                <Border BorderBrush="Black" BorderThickness="0 0 0 1">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <CheckBox 
+                            Content="Match Case" 
+                            x:Name="CheckMatchCaseFilter"
+                            Width="170px"/>
+                        <CheckBox 
+                            Content="Case sensitivity" 
+                            x:Name="CheckCaseSensFilter"
+                            Width="170px"/>
+                        <Label 
+                            Content="Birth Year"/>
+                        <TextBox 
+                            x:Name="TextBirthFilter"
+                            Width="105px"/>
+                    </StackPanel>
+                </Border>
 
             </StackPanel>
 
-            <Button 
+            <Button   
+                Click="RefreshButton"
                 Grid.Row="0"
-                Grid.Column="3"
-                Click="RefreshButton">
-                Refresh List
+                Grid.Column="3">
+                Refresh
             </Button>
 
             <Button 
@@ -149,12 +169,21 @@
                 Update Person
             </Button>
 
-            <Button 
+            <StackPanel 
+                Orientation="Horizontal"
                 Grid.Row="3"
-                Grid.Column="3"
-                Click="DeletePerson">
-                Delete Person
-            </Button>
+                Grid.Column="3">
+                <Button   
+                    Click="FilterButton"
+                    Width="133px">
+                    Filter
+                </Button>
+                <Button 
+                    Click="DeletePerson"
+                    Width="134px">
+                    Delete Person
+                </Button>
+            </StackPanel>
 
         </Grid>
     </Grid>
